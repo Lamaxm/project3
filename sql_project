@@ -3,7 +3,7 @@ create database store ;
 create table countries (
 code int primary key,
 name varchar(20) unique,
-continent_name varchar(20) not null);
+continent_name varchar(20) not null unique);
 
 Create table users(
 id int primary key ,
@@ -12,7 +12,7 @@ email varchar(20) unique,
 gender char check(gender='m' or gender='f'),
 date_of_birth varchar(15),
 created_at datetime default CURRENT_TIMESTAMP,
-country_code int ,
+country_code int unique ,
 foreign key (country_code) references countries(code));
 
 create table orders(
@@ -42,8 +42,6 @@ insert into  users values('4','lama mohammed','l4m4100@gmail.com','f','1998-6-4'
 insert into orders values('1','4','start','2022-12-02 11:10:05');
 insert into products( id , name ,status ) values('2','shipment','expired');
 insert into order_products values('1','2','3');
-
 update countries
 set continent_name = 'africa' where code =5;
-
 delete from products where id = 2 ;
